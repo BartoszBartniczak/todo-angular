@@ -18,7 +18,7 @@ export class TaskService {
     }
 
     saveTask(data: TaskAttributes): Observable<Task> {
-        if (data.uuid) {
+        if (data.id) {
             throw Error('Not implemented yet');
         } else {
             return this.httpClient.post<TaskAttributes>(`${this.apiUrl}/tasks`, data).pipe(

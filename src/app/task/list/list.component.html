@@ -2,10 +2,13 @@
     <h3>List of tasks</h3>
 
     <div *ngFor="let task of tasks|async">
-        <div>
-            <strong>{{task.title}}</strong>
-            <p>{{task.description}}</p>
-        </div>
+        <mat-card>
+            <mat-card-title>{{task.title}}</mat-card-title>
+            <mat-card-content>{{task.description}}</mat-card-content>
+            <mat-card-actions>
+                <a [routerLink]="['task', task.id]" mat-raised-button color="primary">Edit</a>
+            </mat-card-actions>
+        </mat-card>
     </div>
 </div>
 

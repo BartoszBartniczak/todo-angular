@@ -1,6 +1,6 @@
 export interface TaskAttributes {
 
-    uuid: string;
+    id: string;
     title: string;
     description: string;
 
@@ -10,10 +10,10 @@ export class Task implements TaskAttributes {
 
     description: string;
     title: string;
-    uuid: string;
+    id: string;
 
     constructor(attr: Partial<TaskAttributes> = {}) {
-        this.uuid = attr.uuid;
+        this.id = attr.id;
         this.title = attr.title;
         this.description = attr.description;
     }

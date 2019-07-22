@@ -9,6 +9,16 @@
       "id": 2,
       "title": "Your second job",
       "description": "Is to be happy"
+    },
+    {
+      "id": 3,
+      "title": null,
+      "description": null
+    },
+    {
+      "id": 4,
+      "title": "Another task",
+      "description": "Task"
     }
   ]
 }
