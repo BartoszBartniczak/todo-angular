@@ -1,5 +1,7 @@
 <nav>
-    <a routerLink="/task/form/new" mat-raised-button><mat-icon>create</mat-icon>Create task</a>
+    <a [routerLink]="['form', 'new']" mat-raised-button>
+        <mat-icon>create</mat-icon>
+        Create task</a>
 </nav>
 
 <router-outlet></router-outlet>

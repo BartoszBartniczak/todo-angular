@@ -6,7 +6,7 @@
             <mat-card-title>{{task.title}}</mat-card-title>
             <mat-card-content>{{task.description}}</mat-card-content>
             <mat-card-actions>
-                <a [routerLink]="['task', task.id]" mat-raised-button color="primary">Edit</a>
+                <a [routerLink]="['..','form', task.id]" mat-raised-button color="primary">Edit</a>
             </mat-card-actions>
         </mat-card>
     </div>

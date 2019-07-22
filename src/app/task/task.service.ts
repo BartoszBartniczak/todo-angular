@@ -19,7 +19,9 @@ export class TaskService {
 
     saveTask(data: TaskAttributes): Observable<Task> {
         if (data.id) {
-            throw Error('Not implemented yet');
+            return this.httpClient.put<TaskAttributes>(`${this.apiUrl}/tasks/${data.id}`, data).pipe(
+                map((taskAttributes: TaskAttributes) => new Task(taskAttributes))
+            );
         } else {
             return this.httpClient.post<TaskAttributes>(`${this.apiUrl}/tasks`, data).pipe(
                 map((taskAttributes: TaskAttributes) => new Task(taskAttributes))
@@ -28,7 +30,7 @@ export class TaskService {
     }
 
     getTask(id: string): Observable<Task> {
-        return this.httpClient.get<TaskAttributes>(`${this.apiUrl}/task/${id}`).pipe(
+        return this.httpClient.get<TaskAttributes>(`${this.apiUrl}/tasks/${id}`).pipe(
             map((taskAttributes: TaskAttributes) => new Task(taskAttributes))
         );
     }
