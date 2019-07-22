@@ -1,1 +1,12 @@
-<p>list works!</p>
+<div *ngIf="(tasksCounter); else noTasks">
+    <h3>List of tasks</h3>
+
+    <div *ngFor="let task of tasks|async">
+        <div>
+            <strong>{{task.title}}</strong>
+            <p>{{task.description}}</p>
+        </div>
+    </div>
+</div>
+
+<ng-template #noTasks>There is no tasks</ng-template>

@@ -1,15 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {TaskService} from '../task.service';
+import {Observable} from 'rxjs';
+import {Task} from '../task';
+import {map} from 'rxjs/operators';
 
 @Component({
-  selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+    selector: 'app-list',
+    templateUrl: './list.component.html',
+    styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
+    private tasks: Observable<Task[]>;
+    private tasksCounter: Observable<number>;
 
-  constructor() { }
+    constructor(
+        private taskService: TaskService
+    ) {
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+        this.tasks = this.taskService.getTasks();
+        this.tasksCounter = this.tasks.pipe(
+            map((tasks) => tasks.length)
+        );
+    }
 
 }

@@ -5,6 +5,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {TaskModule} from './task/task.module';
 import { ErrorComponent } from './error/error.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
     declarations: [
@@ -15,6 +16,7 @@ import { ErrorComponent } from './error/error.component';
         BrowserModule,
         AppRoutingModule,
         TaskModule,
+        HttpClientModule
     ],
     providers: [],
     bootstrap: [AppComponent]

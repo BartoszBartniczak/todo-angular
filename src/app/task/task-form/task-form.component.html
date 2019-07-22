@@ -1,0 +1,17 @@
+<form [formGroup]="form" (ngSubmit)="save()">
+
+    <fieldset>
+        <label>Title:
+            <input type="text" formControlName="title"/>
+        </label>
+    </fieldset>
+
+    <fieldset>
+        <label>Description
+            <textarea formControlName="description"></textarea>
+        </label>
+    </fieldset>
+
+    <button>Submit</button>
+
+</form>
