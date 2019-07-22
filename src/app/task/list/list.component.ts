@@ -12,6 +12,7 @@ import {map} from 'rxjs/operators';
 export class ListComponent implements OnInit {
     private tasks: Observable<Task[]>;
     private tasksCounter: Observable<number>;
+    displayedColumns: string[] = ['id', 'title', 'edit-button'];
 
     constructor(
         private taskService: TaskService

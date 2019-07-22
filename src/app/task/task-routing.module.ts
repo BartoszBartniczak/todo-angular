@@ -18,7 +18,7 @@ const routes: Routes = [
         path: 'form/:id',
         component: TaskFormComponent,
         resolve: {task: TaskResolver}
-    }
+    },
 ];
 
 @NgModule({

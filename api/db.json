@@ -3,7 +3,7 @@
     {
       "id": 1,
       "title": "First job",
-      "description": "You need to stay focused. Edit"
+      "description": "You need to stay focused."
     },
     {
       "id": 2,
@@ -19,6 +19,11 @@
       "id": 4,
       "title": "Another task",
       "description": "Task"
+    },
+    {
+      "id": 5,
+      "title": "Another task",
+      "description": "This is task descripition"
     }
   ]
 }
