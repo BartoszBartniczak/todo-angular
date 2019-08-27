@@ -6,7 +6,8 @@ import { TaskComponent } from './task.component';
 import { ListComponent } from './list/list.component';
 import { TaskFormComponent } from './task-form/task-form.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {MatButtonModule, MatCardModule, MatIconModule, MatInputModule, MatTableModule} from '@angular/material';
+import {MatButtonModule, MatCardModule, MatChipsModule, MatIconModule, MatInputModule, MatTableModule} from '@angular/material';
+import {AppModule} from '../app.module';
 
 @NgModule({
   declarations: [TaskComponent, ListComponent, TaskFormComponent],
@@ -18,7 +19,8 @@ import {MatButtonModule, MatCardModule, MatIconModule, MatInputModule, MatTableM
         MatCardModule,
         MatButtonModule,
         MatIconModule,
-        MatTableModule
+        MatTableModule,
+        MatChipsModule,
     ]
 })
 export class TaskModule { }

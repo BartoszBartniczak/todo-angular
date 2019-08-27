@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TaskService} from '../task.service';
-import {Observable} from 'rxjs';
 import {Task} from '../task';
-import {map} from 'rxjs/operators';
 
 @Component({
     selector: 'app-list',
@@ -10,9 +8,9 @@ import {map} from 'rxjs/operators';
     styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-    private tasks: Observable<Task[]>;
-    private tasksCounter: Observable<number>;
-    displayedColumns: string[] = ['id', 'title', 'edit-button'];
+    tasks: Task[] = [];
+    tasksCounter: number;
+    displayedColumns: string[] = ['id', 'title', 'status', 'edit-button'];
 
     constructor(
         private taskService: TaskService
@@ -20,10 +18,13 @@ export class ListComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.tasks = this.taskService.getTasks();
-        this.tasksCounter = this.tasks.pipe(
-            map((tasks) => tasks.length)
-        );
+        this.taskService.getTasks().subscribe({
+            next: (tasks) => {
+                this.tasks = tasks;
+                this.tasksCounter = tasks.length;
+            },
+            error: err => alert('Cannot load tasks')
+        });
     }
 
 }
