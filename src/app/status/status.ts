@@ -10,7 +10,7 @@ export enum StatusEnum {
 
 export class Status implements StatusAttributes {
     id: string;
-    private status: StatusEnum;
+    status: StatusEnum;
 
     constructor(attr: Partial<StatusAttributes> = {}) {
         this.id = attr.id;
@@ -22,11 +22,10 @@ export class Status implements StatusAttributes {
         switch (this.status) {
 
             case StatusEnum.IN_PROGRESS:
-                return 'primary';
+                return 'accent';
 
             case StatusEnum.DONE:
                 return 'primary';
-
             default:
                 return null;
         }

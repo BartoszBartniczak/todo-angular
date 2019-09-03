@@ -25,3 +25,22 @@
     margin-right: 0;
   }
 }
+
+.button-row{
+  margin-bottom: 20px;
+
+  button,
+  a {
+    margin-right: 8px;
+  }
+}
+
+.mat-primary[disabled]{
+  background-color: rgba(63, 81, 181, 0.5);
+  color: white;
+}
+
+.mat-accent[disabled]{
+  background-color: rgb(255, 64, 129, 0.5);
+  color: white;
+}

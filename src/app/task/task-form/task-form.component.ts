@@ -3,7 +3,8 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {TaskService} from '../task.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {map} from 'rxjs/operators';
-import {TaskAttributes} from '../task';
+import {Task, TaskAttributes} from '../task';
+import {Status, StatusEnum} from '../../status/status';
 
 @Component({
     selector: 'app-task-form',
@@ -12,6 +13,8 @@ import {TaskAttributes} from '../task';
 })
 export class TaskFormComponent implements OnInit {
     form: FormGroup;
+    private task: Task;
+    public statusEnum = StatusEnum;
 
     constructor(
         private taskService: TaskService,
@@ -30,6 +33,8 @@ export class TaskFormComponent implements OnInit {
                     title: new FormControl(task.title),
                     description: new FormControl(task.description)
                 });
+
+                this.task = task;
             });
     }
 
@@ -39,5 +44,36 @@ export class TaskFormComponent implements OnInit {
         this.taskService.saveTask(taskAttributes).subscribe(
             () => this.router.navigate(['../..'], {relativeTo: this.route}),
         );
+    }
+
+
+    isButtonDisabled(status: Status, buttonStatus: StatusEnum): boolean {
+        switch (buttonStatus) {
+            case StatusEnum.TO_DO:
+                return true;
+            case StatusEnum.IN_PROGRESS:
+                return status.status !== StatusEnum.TO_DO;
+            case StatusEnum.DONE:
+                return status.status !== StatusEnum.IN_PROGRESS;
+        }
+    }
+
+
+    resolveButtonColor(status: Status, buttonStatus: StatusEnum) {
+        if (status.status === buttonStatus) {
+            return 'accent';
+        }
+        return null;
+    }
+
+    changeStatus(task: Task, newStatus: StatusEnum) {
+        this.taskService.changeStatus(task, newStatus).subscribe(
+            (data: TaskAttributes) => {
+                this.task = new Task(data);
+            },
+            () => alert('Cannot change status.'), // TODO
+        )
+        ;
+        return false;
     }
 }

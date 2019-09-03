@@ -4,6 +4,7 @@ import {Task, TaskAttributes} from './task';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {map} from 'rxjs/operators';
+import {StatusEnum} from '../status/status';
 
 @Injectable({
     providedIn: 'root'
@@ -38,6 +39,12 @@ export class TaskService {
     getTasks(): Observable<Task[]> {
         return this.httpClient.get<TaskAttributes[]>(`${this.apiUrl}/tasks`).pipe(
             map((data) => data.map(taskAttributes => new Task(taskAttributes)))
+        );
+    }
+
+    changeStatus(task: Task, newStatus: StatusEnum): Observable<Task> {
+        return this.httpClient.put(`${this.apiUrl}/tasks/${task.id}/status/${newStatus}`, []).pipe(
+            map((taskAttributes: TaskAttributes) => new Task(taskAttributes))
         );
     }
 }
