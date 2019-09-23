@@ -18,19 +18,15 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatCardModule} from '@angular/material/card';
 import {ReactiveFormsModule} from '@angular/forms';
 import {JwtModule} from '@auth0/angular-jwt';
-import {AuthService} from './auth.service';
-import {LoginComponent} from './login/login.component';
-
-export function tokenGetter() {
-  return AuthService.getAuthToken();
-}
+import {AuthComponent} from './auth/auth.component';
+import {AuthService} from './auth/auth.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     ErrorComponent,
     MainMenuComponent,
-    LoginComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,11 +51,10 @@ export function tokenGetter() {
         tokenGetter: () => {
           return AuthService.getAuthToken();
         },
-        whitelistedDomains: ['http://todo-api.test'],
+        whitelistedDomains: ['todo-api.test'],
         blacklistedRoutes: [
-          '/login'
+          'todo-api.test/login_check',
         ],
-        throwNoTokenError: true,
       }
     }),
   ],

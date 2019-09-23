@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {environment} from '../environments/environment';
-import {map} from 'rxjs/operators';
+import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
+import {JwtHelperService} from '@auth0/angular-jwt';
 
 export interface JwtResponse {
   token: string;
@@ -12,11 +13,13 @@ export interface JwtResponse {
   providedIn: 'root'
 })
 export class AuthService {
-
   constructor(private httpClient: HttpClient) {
+    this.jwtHelper = new JwtHelperService();
   }
 
   static readonly ACCESS_TOKEN_KEY = 'access_token';
+
+  private jwtHelper: JwtHelperService;
 
   private apiUrl: string = environment.apiUrl;
 
@@ -26,6 +29,10 @@ export class AuthService {
 
   static getAuthToken(): string {
     return localStorage.getItem(this.ACCESS_TOKEN_KEY);
+  }
+
+  isUserLoggedIn(): boolean {
+    return !this.jwtHelper.isTokenExpired(AuthService.getAuthToken());
   }
 
   login(username: string, password: string): Observable<JwtResponse> {
