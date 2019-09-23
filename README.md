@@ -1,6 +1,14 @@
 # AngularTodoApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.6.
+Simple demo app.
+
+Technology stack
+
+* Angular
+* Angular Material
+* rxjs
+* Symfony API [https://github.com/BartoszBartniczak/symfony-todo-app](https://github.com/BartoszBartniczak/symfony-todo-app)
+* auth0/angular2-jwt
 
 ## Development server
 

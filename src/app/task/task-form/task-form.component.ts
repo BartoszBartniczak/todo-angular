@@ -71,7 +71,7 @@ export class TaskFormComponent implements OnInit {
             (data: TaskAttributes) => {
                 this.task = new Task(data);
             },
-            () => alert('Cannot change status.'), // TODO
+            () => console.log('Cannot change status.'), // TODO
         )
         ;
         return false;

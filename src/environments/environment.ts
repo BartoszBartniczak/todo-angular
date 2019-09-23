@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://todo-api.test'
+  apiDomain: 'todo-api.test',
+  apiUrl: 'http://todo-api.test',
 };
 
 /*

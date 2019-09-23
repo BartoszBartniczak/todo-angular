@@ -1,0 +1,27 @@
+<form [formGroup]="form" (ngSubmit)="login()">
+<mat-card>
+  <mat-card-header>
+    <mat-icon mat-card-avatar class="header-icon">person_pin</mat-icon>
+    <mat-card-title>Login form</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+      <mat-form-field>
+        <input matInput placeholder="Your username" type="text" formControlName="username" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" formControlName="password" required>
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+
+    <mat-error *ngIf="wrongCredentials">Wrong credentials</mat-error>
+
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" type="submit">Login</button>
+  </mat-card-actions>
+</mat-card>
+</form>
