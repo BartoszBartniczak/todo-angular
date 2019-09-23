@@ -6,8 +6,8 @@
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item routerLink="/task">Tasks</a>
-      <a mat-list-item routerLink="/login" *ngIf="!authService.isUserLoggedIn()">Login</a>
-      <a mat-list-item routerLink="/logout" *ngIf="authService.isUserLoggedIn()">Logout</a>
+      <a mat-list-item routerLink="/auth/login" *ngIf="!authService.isUserLoggedIn()">Login</a>
+      <a mat-list-item routerLink="/auth/logout" *ngIf="authService.isUserLoggedIn()">Logout</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

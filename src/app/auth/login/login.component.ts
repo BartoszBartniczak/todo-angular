@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
+import {AuthService, JwtResponse} from '../auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {AuthService, JwtResponse} from './auth.service';
 
 interface UserCredentials {
   username: string;
@@ -10,10 +10,10 @@ interface UserCredentials {
 
 @Component({
   selector: 'app-login',
-  templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.scss']
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class AuthComponent implements OnInit {
+export class LoginComponent implements OnInit {
   form: FormGroup;
   hide = true;
   private wrongCredentials: boolean;

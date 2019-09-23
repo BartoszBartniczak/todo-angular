@@ -40,4 +40,8 @@ export class AuthService {
       map((jwtResponse: JwtResponse) => jwtResponse)
     );
   }
+
+  logout(): void {
+    localStorage.removeItem(AuthService.ACCESS_TOKEN_KEY);
+  }
 }

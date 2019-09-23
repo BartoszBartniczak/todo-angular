@@ -1,6 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
+import {environment} from '../environments/environment';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {TaskModule} from './task/task.module';
@@ -12,21 +13,15 @@ import {LayoutModule} from '@angular/cdk/layout';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatListModule} from '@angular/material/list';
 import {MainMenuComponent} from './main-menu/main-menu.component';
-import {MatInputModule} from '@angular/material/input';
-import {MatSelectModule} from '@angular/material/select';
-import {MatRadioModule} from '@angular/material/radio';
-import {MatCardModule} from '@angular/material/card';
-import {ReactiveFormsModule} from '@angular/forms';
 import {JwtModule} from '@auth0/angular-jwt';
-import {AuthComponent} from './auth/auth.component';
 import {AuthService} from './auth/auth.service';
+import {AuthModule} from './auth/auth.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     ErrorComponent,
     MainMenuComponent,
-    AuthComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,23 +35,19 @@ import {AuthService} from './auth/auth.service';
     LayoutModule,
     MatToolbarModule,
     MatListModule,
-    MatInputModule,
-    MatSelectModule,
-    MatRadioModule,
-    MatCardModule,
-    ReactiveFormsModule,
     HttpClientModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: () => {
           return AuthService.getAuthToken();
         },
-        whitelistedDomains: ['todo-api.test'],
+        whitelistedDomains: [environment.apiDomain],
         blacklistedRoutes: [
-          'todo-api.test/login_check',
+          `${environment.apiDomain}/login_check`,
         ],
       }
     }),
+    AuthModule,
   ],
   providers: [],
   exports: [],
