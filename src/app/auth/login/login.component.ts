@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {AuthService, JwtResponse} from '../auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {Subscription} from 'rxjs';
 
 interface UserCredentials {
   username: string;
@@ -13,10 +14,11 @@ interface UserCredentials {
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   form: FormGroup;
   hide = true;
   private wrongCredentials: boolean;
+  private loginSubscription: Subscription;
 
   constructor(
     private authService: AuthService,
@@ -35,7 +37,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     const userCredentials: UserCredentials = this.form.value;
-    this.authService.login(userCredentials.username, userCredentials.password).subscribe(
+    this.loginSubscription = this.authService.login(userCredentials.username, userCredentials.password).subscribe(
       (response: JwtResponse) => {
         AuthService.setAuthToken(response.token);
 
@@ -50,5 +52,9 @@ export class LoginComponent implements OnInit {
         this.wrongCredentials = true;
       }
     );
+  }
+
+  ngOnDestroy(): void {
+    this.loginSubscription.unsubscribe();
   }
 }
