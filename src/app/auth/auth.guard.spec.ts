@@ -9,7 +9,12 @@ describe('AuthGuard', () => {
     });
   });
 
-  it('should ...', inject([AuthGuard], (guard: AuthGuard) => {
+  it('should pass when user is logged in', inject([AuthGuard], (guard: AuthGuard) => {
     expect(guard).toBeTruthy();
+
+
+    //TODO get auth service
   }));
+
+  // it('')
 });

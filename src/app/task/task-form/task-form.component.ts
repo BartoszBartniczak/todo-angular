@@ -31,14 +31,15 @@ export class TaskFormComponent implements OnInit, OnDestroy {
         map((data) => data.task)
       )
         .subscribe((task) => {
-          this.form = new FormGroup({
-            id: new FormControl(task.id),
-            title: new FormControl(task.title),
-            description: new FormControl(task.description)
-          });
+            this.form = new FormGroup({
+              id: new FormControl(task.id),
+              title: new FormControl(task.title),
+              description: new FormControl(task.description)
+            });
 
-          this.task = task;
-        })
+            this.task = task;
+          }
+        )
     );
   }
 
