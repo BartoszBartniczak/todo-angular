@@ -1,6 +1,8 @@
 # AngularTodoApp
-
+==========================================
 Simple demo app.
+------------------------------------------
+[![Build Status](https://travis-ci.com/BartoszBartniczak/todo-angular.svg?branch=master)](https://travis-ci.com/BartoszBartniczak/todo-angular)
 
 Technology stack
 
