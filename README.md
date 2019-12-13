@@ -3,6 +3,7 @@
 Simple demo app.
 ------------------------------------------
 [![Build Status](https://travis-ci.com/BartoszBartniczak/todo-angular.svg?branch=master)](https://travis-ci.com/BartoszBartniczak/todo-angular)
+[![Coverage Status](https://coveralls.io/repos/github/BartoszBartniczak/todo-angular/badge.svg?branch=master)](https://coveralls.io/github/BartoszBartniczak/todo-angular?branch=master)
 
 Technology stack
 

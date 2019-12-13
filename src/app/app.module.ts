@@ -13,9 +13,21 @@ import {LayoutModule} from '@angular/cdk/layout';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatListModule} from '@angular/material/list';
 import {MainMenuComponent} from './main-menu/main-menu.component';
-import {JwtModule} from '@auth0/angular-jwt';
+import {JWT_OPTIONS, JwtModule} from '@auth0/angular-jwt';
 import {AuthService} from './auth/auth.service';
 import {AuthModule} from './auth/auth.module';
+
+export function jwtOptionsFactory() {
+    return {
+      tokenGetter: () => {
+        return AuthService.getAuthToken();
+      },
+      whitelistedDomains: [environment.apiDomain],
+      blacklistedRoutes: [
+        `${environment.apiDomain}/login_check`,
+      ],
+    };
+}
 
 @NgModule({
   declarations: [
@@ -37,19 +49,14 @@ import {AuthModule} from './auth/auth.module';
     MatListModule,
     HttpClientModule,
     JwtModule.forRoot({
-      config: {
-        tokenGetter: () => {
-          return AuthService.getAuthToken();
-        },
-        whitelistedDomains: [environment.apiDomain],
-        blacklistedRoutes: [
-          `${environment.apiDomain}/login_check`,
-        ],
+      jwtOptionsProvider: {
+        provide: JWT_OPTIONS,
+        useFactory: jwtOptionsFactory,
       }
     }),
     AuthModule,
   ],
-  providers: [],
+  providers: [AuthService],
   exports: [],
   bootstrap: [AppComponent]
 })

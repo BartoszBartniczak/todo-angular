@@ -1,9 +1,10 @@
-import {TestBed, async, inject, getTestBed} from '@angular/core/testing';
+import {TestBed, inject, getTestBed} from '@angular/core/testing';
 
 import {AuthGuard} from './auth.guard';
 import {AuthService} from './auth.service';
 import {Router} from '@angular/router';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {JwtHelperService} from '@auth0/angular-jwt';
 
 describe('AuthGuard', () => {
 
@@ -13,12 +14,14 @@ describe('AuthGuard', () => {
   let authService: AuthService;
   const activatedRouteMock: any = {snapshot: {}};
   const routeStateMock: any = {snapshot: {}, url: '/task/list'};
+  const jwtHelperServiceMock: any = {};
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         AuthGuard,
         {provide: Router, useValue: routerMock},
+        {provide: JwtHelperService, useValue: jwtHelperServiceMock},
         AuthService
       ],
       imports: [
@@ -50,5 +53,7 @@ describe('AuthGuard', () => {
 
     })
   );
+
+
 
 });

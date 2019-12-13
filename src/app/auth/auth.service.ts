@@ -13,22 +13,20 @@ export interface JwtResponse {
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private httpClient: HttpClient) {
-    this.jwtHelper = new JwtHelperService();
+  constructor(private httpClient: HttpClient, private jwtHelper: JwtHelperService) {
   }
 
   static readonly ACCESS_TOKEN_KEY = 'access_token';
 
-  private jwtHelper: JwtHelperService;
 
   private apiUrl: string = environment.apiUrl;
 
   static setAuthToken(token: string) {
-    localStorage.setItem(this.ACCESS_TOKEN_KEY, token);
+    localStorage.setItem(AuthService.ACCESS_TOKEN_KEY, token);
   }
 
   static getAuthToken(): string {
-    return localStorage.getItem(this.ACCESS_TOKEN_KEY);
+    return localStorage.getItem(AuthService.ACCESS_TOKEN_KEY);
   }
 
   isUserLoggedIn(): boolean {
