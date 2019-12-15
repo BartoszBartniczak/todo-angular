@@ -34,9 +34,13 @@ export class AuthService {
   }
 
   login(username: string, password: string): Observable<JwtResponse> {
-    return this.httpClient.post<JwtResponse>(`${this.apiUrl}/login_check`, {username, password}).pipe(
-      map((jwtResponse: JwtResponse) => jwtResponse)
-    );
+    return this.httpClient.post<JwtResponse>(
+      `${this.apiUrl}/login_check`,
+      {username, password}
+    )
+      .pipe(
+        map((jwtResponse: JwtResponse) => jwtResponse)
+      );
   }
 
   logout(): void {
